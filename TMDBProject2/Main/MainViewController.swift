@@ -23,6 +23,8 @@ class MainViewController: UIViewController {
         MainCollectionView.register(nib, forCellWithReuseIdentifier: MainCollectionViewCell.ReusableIdentifier)
         collectionViewLayout()
         fetchTBDM(page: page)
+        
+        navigationController?.navigationBar.tintColor = .black
     }
     
     func fetchTBDM(page: Int) {
@@ -43,9 +45,18 @@ class MainViewController: UIViewController {
                     let vote = movie["vote_average"].doubleValue
                     let movieId = movie["id"].intValue
                     
+                    print("현재 페이지 \(page)")
+                    print("영화 제목 \(title)")
+                    
                     let data = Movie(title: title, release: release, overview: overview, image: backImage, vote: vote, poster: posterImage, movieid: movieId)
                     
                     self.movieData.append(data)
+                    
+                    print("json 타이틀: \(title)")
+                    print("data 타이틀: \(data.title)")
+                    
+                    print("data 갯수: \(self.movieData.count)")
+                    print("================")
                 }
                 
                 self.MainCollectionView.reloadData()
@@ -91,26 +102,35 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         cell.voteIntLabel.text = String(Int(movieData[indexPath.row].vote))
         cell.titleLabel.text = movieData[indexPath.row].title
+//        print("cell title:\(movieData[indexPath.row].title), \(indexPath.row)번 째")
         cell.overViewLabel.text = movieData[indexPath.row].overview
         
         let url = URL(string: movieData[indexPath.row].image)
         cell.backgroundImageView.kf.setImage(with: url)
         
-        
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let sb = UIStoryboard(name: StoryBoardName.detail, bundle: nil)
+        guard let vc = sb.instantiateViewController(withIdentifier: DetailViewController.ReusableIdentifier) as? DetailViewController else { return }
+        
+        vc.movieData = movieData[indexPath.row]
+        
+        navigationItem.backButtonTitle = ""
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
 extension MainViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
-            if movieData.count-1 == indexPath.item && movieData.count < totalPage {
+            if movieData.count - 1 == indexPath.item && movieData.count < totalPage {
                 page += 1
-                print("-----페이지 \(page)----------")
                 fetchTBDM(page: page)
             }
         }
     }
-    
-    
+
+
 }
