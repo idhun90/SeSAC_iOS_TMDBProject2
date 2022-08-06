@@ -1,10 +1,3 @@
-//
-//  MainCollectionViewCell.swift
-//  TMDBProject2
-//
-//  Created by 이도헌 on 2022/08/06.
-//
-
 import UIKit
 
 class MainCollectionViewCell: UICollectionViewCell {
@@ -21,9 +14,6 @@ class MainCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    
-
-
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -48,7 +38,7 @@ class MainCollectionViewCell: UICollectionViewCell {
         overViewLabel.font = .systemFont(ofSize: 17)
         overViewLabel.textColor = .darkGray
         
-        detailLabel.font = .systemFont(ofSize: 15)
+        detailLabel.font = .systemFont(ofSize: 14, weight: .light)
         detailLabel.text = "자세히 보기"
         
         voteview.backgroundColor = .systemPurple
@@ -58,6 +48,8 @@ class MainCollectionViewCell: UICollectionViewCell {
         voteIntLabel.font = .systemFont(ofSize: 14)
         
         linkButton.tintColor = .white
+        
+        backgroundImageView.contentMode = .scaleAspectFill
         
     }
 
