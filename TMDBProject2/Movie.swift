@@ -9,3 +9,18 @@ struct Movie {
     let poster: String
     let movieid: Int
 }
+
+struct Cast {
+    
+    let name: String
+    let character: String
+    let profile_path: String
+    
+}
+
+struct Crew {
+    
+    let name: String
+    let job: String
+    let profile_path: String
+}

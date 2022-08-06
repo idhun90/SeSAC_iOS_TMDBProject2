@@ -54,7 +54,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="castCrewImageView" destination="KQY-dw-kiP" id="SyY-J2-hMO"/>
-                <outlet property="jobLabel" destination="X1z-Xz-XtF" id="CTt-Sz-O41"/>
+                <outlet property="characterOrJobLabel" destination="X1z-Xz-XtF" id="CTt-Sz-O41"/>
                 <outlet property="nameLabel" destination="NSa-77-8BG" id="nWB-lo-Mac"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="136.60714285714286"/>

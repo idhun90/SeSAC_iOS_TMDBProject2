@@ -11,17 +11,24 @@ class CastCrewTableViewCell: UITableViewCell {
 
     @IBOutlet weak var castCrewImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var jobLabel: UILabel!
+    @IBOutlet weak var characterOrJobLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        castCrewImageView.layer.cornerRadius = 5
+        castCrewImageView.contentMode = .scaleAspectFill
+        
+        nameLabel.font = .systemFont(ofSize: 18, weight: .semibold)
+        characterOrJobLabel.font = .systemFont(ofSize: 13)
+        
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        
     }
     
 }

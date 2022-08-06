@@ -21,6 +21,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailTableView: UITableView!
     
     var movieData: Movie?
+    var castInfo: [Cast] = []
+    var crewInfo: [Crew] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +35,52 @@ class DetailViewController: UIViewController {
         detailTableView.register(overViewNib, forCellReuseIdentifier: OverViewTableViewCell.ReusableIdentifier)
         detailTableView.register(CastCrewViewNib, forCellReuseIdentifier: CastCrewTableViewCell.ReusableIdentifier)
         
-        detailTableView.rowHeight = 80
+        detailTableView.rowHeight = 100
         
         viewLayout()
         loadData()
         
+        guard let movieData = movieData else { return }
+        fetchID(movieId: movieData.movieid)
+    }
+    
+    func fetchID(movieId: Int) {
+        
+        let url = "\(EndPoint.tmdCastCrew)/\(movieId)/credits?api_key=\(APIKey.TMDB)"
+        AF.request(url, method: .get).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+//                print("JSON: \(json)")
+                
+                for cast in json["cast"].arrayValue {
+                    let name = cast["name"].stringValue
+                    let character = cast["character"].stringValue
+                    let profile = EndPoint.tmdImage + cast["profile_path"].stringValue
+                    
+                    let data = Cast(name: name, character: character, profile_path: profile)
+                    self.castInfo.append(data)
+                    
+                    print(name)
+                }
+                
+                for crew in json["crew"].arrayValue {
+                    let name = crew["name"].stringValue
+                    let job = crew["job"].stringValue
+                    let profile = EndPoint.tmdImage + crew["profile_path"].stringValue
+                    
+                    let data = Crew(name: name, job: job, profile_path: profile)
+                    self.crewInfo.append(data)
+                    print("======crew name: \(name)=======")
+                }
+                self.detailTableView.reloadData()
+                
+                
+     
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     func viewLayout() {
@@ -105,9 +148,11 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return 1
         case 1:
-            return 2
+            return castInfo.count
+           
         case 2:
-            return 3
+            return crewInfo.count
+            
         default:
             return 0
         }
@@ -119,12 +164,27 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             guard let cell = detailTableView.dequeueReusableCell(withIdentifier: OverViewTableViewCell.ReusableIdentifier, for: indexPath) as? OverViewTableViewCell else { return UITableViewCell() }
+            
+            cell.overViewLabel.text = movieData?.overview
+            
             return cell
+            
         case 1:
-            // 케스트
+            // Cast
+            let url = URL(string: castInfo[indexPath.row].profile_path)
+            cell.castCrewImageView.kf.setImage(with: url)
+            cell.nameLabel.text = castInfo[indexPath.row].name
+            cell.characterOrJobLabel.text = castInfo[indexPath.row].character
+            
             return cell
+            
         case 2:
-            // 캐스트
+            // Crew
+            let url = URL(string: crewInfo[indexPath.row].profile_path)
+            cell.castCrewImageView.kf.setImage(with: url)
+            cell.nameLabel.text = crewInfo[indexPath.row].name
+            cell.characterOrJobLabel.text = crewInfo[indexPath.row].job
+            
             return cell
         default:
             return UITableViewCell()
