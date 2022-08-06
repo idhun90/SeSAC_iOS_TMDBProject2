@@ -10,6 +10,7 @@ class MainViewController: UIViewController {
     var page = 1
     let totalPage = 1000
     
+    
     @IBOutlet weak var MainCollectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -54,12 +55,36 @@ class MainViewController: UIViewController {
                     
                     print("json 타이틀: \(title)")
                     print("data 타이틀: \(data.title)")
+                    print("movieID: \(movieId)")
                     
                     print("data 갯수: \(self.movieData.count)")
                     print("================")
                 }
                 
                 self.MainCollectionView.reloadData()
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func fetchVideo(id: Int) {
+        let url = "\(EndPoint.tmdCastCrew)/\(id)/videos?api_key=\(APIKey.TMDB)"
+
+        AF.request(url, method: .get).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print("JSON: \(json)")
+                
+                let sb = UIStoryboard(name: StoryBoardName.web, bundle: nil)
+                guard let vc = sb.instantiateViewController(withIdentifier: WebViewController.ReusableIdentifier) as? WebViewController else { return }
+                
+                vc.key = (json["results"][0]["key"].stringValue)
+                
+                let nav = UINavigationController(rootViewController: vc)
+                self.present(nav, animated: true)
                 
             case .failure(let error):
                 print(error)
@@ -86,7 +111,17 @@ class MainViewController: UIViewController {
 }
 
 //MARK: - CollectionView Protocol 채택
-extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDataSourcePrefetching {
+    
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            if movieData.count - 1 == indexPath.item && movieData.count < totalPage {
+                page += 1
+                fetchTBDM(page: page)
+            }
+        }
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movieData.count
@@ -108,7 +143,18 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let url = URL(string: movieData[indexPath.row].image)
         cell.backgroundImageView.kf.setImage(with: url)
         
+        cell.linkButton.tag = indexPath.row
+        cell.linkButton.addTarget(self, action: #selector(clickedLinkButton), for: .touchUpInside)
+        
         return cell
+    }
+    
+    @objc func clickedLinkButton(sender: UIButton) {
+        
+        let id = movieData[sender.tag].movieid
+        print(id)
+        fetchVideo(id: id)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -120,17 +166,4 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         navigationItem.backButtonTitle = ""
         navigationController?.pushViewController(vc, animated: true)
     }
-}
-
-extension MainViewController: UICollectionViewDataSourcePrefetching {
-    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        for indexPath in indexPaths {
-            if movieData.count - 1 == indexPath.item && movieData.count < totalPage {
-                page += 1
-                fetchTBDM(page: page)
-            }
-        }
-    }
-
-
 }

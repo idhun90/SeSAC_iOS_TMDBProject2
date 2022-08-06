@@ -28,6 +28,8 @@
 		14AD3C0B289EAD06008AD14C /* OverViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14AD3C09289EAD06008AD14C /* OverViewTableViewCell.xib */; };
 		14AD3C0E289EAD16008AD14C /* CastCrewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AD3C0C289EAD16008AD14C /* CastCrewTableViewCell.swift */; };
 		14AD3C0F289EAD16008AD14C /* CastCrewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14AD3C0D289EAD16008AD14C /* CastCrewTableViewCell.xib */; };
+		14AD3C12289ED6AB008AD14C /* Web.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14AD3C11289ED6AB008AD14C /* Web.storyboard */; };
+		14AD3C14289ED6BC008AD14C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AD3C13289ED6BC008AD14C /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,8 @@
 		14AD3C09289EAD06008AD14C /* OverViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverViewTableViewCell.xib; sourceTree = "<group>"; };
 		14AD3C0C289EAD16008AD14C /* CastCrewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastCrewTableViewCell.swift; sourceTree = "<group>"; };
 		14AD3C0D289EAD16008AD14C /* CastCrewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CastCrewTableViewCell.xib; sourceTree = "<group>"; };
+		14AD3C11289ED6AB008AD14C /* Web.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Web.storyboard; sourceTree = "<group>"; };
+		14AD3C13289ED6BC008AD14C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,7 @@
 				14AD3BD2289E50AE008AD14C /* AppDelegate.swift */,
 				14AD3BD4289E50AE008AD14C /* SceneDelegate.swift */,
 				14AD3C00289E7B77008AD14C /* Movie.swift */,
+				14AD3C10289ED694008AD14C /* Web */,
 				14AD3C03289EA4AD008AD14C /* Detail */,
 				14AD3C02289EA3DE008AD14C /* Main */,
 				14AD3BDB289E50AE008AD14C /* Assets.xcassets */,
@@ -131,6 +136,15 @@
 				14AD3C0D289EAD16008AD14C /* CastCrewTableViewCell.xib */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		14AD3C10289ED694008AD14C /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				14AD3C11289ED6AB008AD14C /* Web.storyboard */,
+				14AD3C13289ED6BC008AD14C /* WebViewController.swift */,
+			);
+			path = Web;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,6 +223,7 @@
 				14AD3BF6289E5CF7008AD14C /* MainCollectionViewCell.xib in Resources */,
 				14AD3BDA289E50AE008AD14C /* Main.storyboard in Resources */,
 				14AD3C05289EA4C1008AD14C /* Detail.storyboard in Resources */,
+				14AD3C12289ED6AB008AD14C /* Web.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14AD3C01289E7B77008AD14C /* Movie.swift in Sources */,
+				14AD3C14289ED6BC008AD14C /* WebViewController.swift in Sources */,
 				14AD3BD3289E50AE008AD14C /* AppDelegate.swift in Sources */,
 				14AD3BF5289E5CF7008AD14C /* MainCollectionViewCell.swift in Sources */,
 				14AD3BED289E576B008AD14C /* Constant.swift in Sources */,

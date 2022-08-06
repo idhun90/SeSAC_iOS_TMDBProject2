@@ -74,6 +74,8 @@ class DetailViewController: UIViewController {
                     print("======crew name: \(name)=======")
                 }
                 self.detailTableView.reloadData()
+                print("======\(self.castInfo.count)======")
+                print("======\(self.crewInfo.count)======")
                 
                 
      
