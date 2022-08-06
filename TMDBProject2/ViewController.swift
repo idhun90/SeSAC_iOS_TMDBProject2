@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  TMDBProject2
-//
-//  Created by 이도헌 on 2022/08/06.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
