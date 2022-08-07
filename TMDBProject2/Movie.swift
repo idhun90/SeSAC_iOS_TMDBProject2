@@ -8,6 +8,7 @@ struct Movie {
     let vote: Double
     let poster: String
     let movieid: Int
+    let genreid: Int
 }
 
 struct Cast {

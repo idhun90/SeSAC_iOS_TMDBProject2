@@ -9,7 +9,7 @@ class MainViewController: UIViewController {
     var movieData: [Movie] = []
     var page = 1
     let totalPage = 1000
-    
+    var genre: [Int: String] = [:]
     
     @IBOutlet weak var MainCollectionView: UICollectionView!
     
@@ -23,7 +23,10 @@ class MainViewController: UIViewController {
         let nib = UINib(nibName: MainCollectionViewCell.ReusableIdentifier, bundle: nil)
         MainCollectionView.register(nib, forCellWithReuseIdentifier: MainCollectionViewCell.ReusableIdentifier)
         collectionViewLayout()
+        
+        fetchGenre()
         fetchTBDM(page: page)
+        
         
         navigationController?.navigationBar.tintColor = .black
     }
@@ -45,23 +48,51 @@ class MainViewController: UIViewController {
                     let posterImage = EndPoint.tmdImage + movie["poster_path"].stringValue
                     let vote = movie["vote_average"].doubleValue
                     let movieId = movie["id"].intValue
+                    let genreid = movie["genre_ids"][0].intValue
                     
                     print("현재 페이지 \(page)")
                     print("영화 제목 \(title)")
                     
-                    let data = Movie(title: title, release: release, overview: overview, image: backImage, vote: vote, poster: posterImage, movieid: movieId)
+                    let data = Movie(title: title, release: release, overview: overview, image: backImage, vote: vote, poster: posterImage, movieid: movieId, genreid: genreid)
                     
                     self.movieData.append(data)
                     
                     print("json 타이틀: \(title)")
                     print("data 타이틀: \(data.title)")
                     print("movieID: \(movieId)")
+                    print("genreID: \(genreid)")
                     
                     print("data 갯수: \(self.movieData.count)")
                     print("================")
+                    
+                    
                 }
                 
                 self.MainCollectionView.reloadData()
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func fetchGenre() {
+        
+        let url = "\(EndPoint.getTmdbGenre)?api_key=\(APIKey.TMDB)"
+        AF.request(url, method: .get).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print("JSON: \(json)")
+                
+                for dictionary in json["genres"].arrayValue {
+                    let key = dictionary["id"].intValue
+                    let value = dictionary["name"].stringValue
+                    
+                    self.genre.updateValue(value, forKey: key)
+                }
+                
+                print("장르 딕셔너리: \(self.genre)")
                 
             case .failure(let error):
                 print(error)
@@ -122,7 +153,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movieData.count
     }
@@ -145,6 +175,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         cell.linkButton.tag = indexPath.row
         cell.linkButton.addTarget(self, action: #selector(clickedLinkButton), for: .touchUpInside)
+        
+        cell.genreLabel.text = "#" + genre[movieData[indexPath.row].genreid]!
         
         return cell
     }

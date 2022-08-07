@@ -28,11 +28,10 @@ class MainCollectionViewCell: UICollectionViewCell {
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowRadius = 7
         self.layer.shadowOpacity = 0.2
-        self.layer.shadowOffset = CGSize(width: 3, height: 3)
+        self.layer.shadowOffset = CGSize(width: 5, height: 5)
         
         dateLabel.font = .systemFont(ofSize: 12)
-        genreLabel.font = .boldSystemFont(ofSize: 17)
-        genreLabel.text = "장르"
+        genreLabel.font = .systemFont(ofSize: 18, weight: .bold)
         
         titleLabel.font = .systemFont(ofSize: 20, weight: .bold)
         overViewLabel.font = .systemFont(ofSize: 17)

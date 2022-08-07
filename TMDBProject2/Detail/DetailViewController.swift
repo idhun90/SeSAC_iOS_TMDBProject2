@@ -35,7 +35,7 @@ class DetailViewController: UIViewController {
         detailTableView.register(overViewNib, forCellReuseIdentifier: OverViewTableViewCell.ReusableIdentifier)
         detailTableView.register(CastCrewViewNib, forCellReuseIdentifier: CastCrewTableViewCell.ReusableIdentifier)
         
-        detailTableView.rowHeight = 100
+        detailTableView.rowHeight = 90
         
         viewLayout()
         loadData()
