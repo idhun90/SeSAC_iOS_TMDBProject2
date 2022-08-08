@@ -15,18 +15,21 @@ class CastCrewTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        castCrewImageView.layer.cornerRadius = 5
-        castCrewImageView.contentMode = .scaleAspectFill
-        
-        nameLabel.font = .systemFont(ofSize: 18, weight: .semibold)
-        characterOrJobLabel.font = .systemFont(ofSize: 13)
-        
-        
+        layout()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
+}
+
+extension CastCrewTableViewCell: CellLayout {
+    func layout() {
+        castCrewImageView.layer.cornerRadius = 5
+        castCrewImageView.contentMode = .scaleAspectFill
+        
+        nameLabel.font = .systemFont(ofSize: 18, weight: .semibold)
+        characterOrJobLabel.font = .systemFont(ofSize: 13)
+    }
 }

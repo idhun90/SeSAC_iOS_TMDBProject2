@@ -171,6 +171,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
             
         } else {
+            print("===== 현재 섹션: \(indexPath.section) =====")
             guard let cell = detailTableView.dequeueReusableCell(withIdentifier: CastCrewTableViewCell.ReusableIdentifier, for: indexPath) as? CastCrewTableViewCell else { return UITableViewCell() }
             
             let url = indexPath.section == Section.cast.rawValue ? URL(string: castInfo[indexPath.row].profile_path) : URL(string: crewInfo[indexPath.row].profile_path)

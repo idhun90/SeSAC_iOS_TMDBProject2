@@ -7,14 +7,17 @@ class OverViewTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        overViewLabel.font = .systemFont(ofSize: 16)
-        overViewLabel.numberOfLines = 2
+        layout()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
-    
+}
+
+extension OverViewTableViewCell: CellLayout {
+    func layout() {
+        overViewLabel.font = .systemFont(ofSize: 16)
+        overViewLabel.numberOfLines = 2
+    }
 }

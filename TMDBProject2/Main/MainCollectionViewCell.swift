@@ -19,9 +19,11 @@ class MainCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         layout()
     }
-    
+
+}
+
+extension MainCollectionViewCell: CellLayout {
     func layout() {
-        
         inView.layer.masksToBounds = true
         inView.layer.cornerRadius = 7
         
@@ -49,7 +51,5 @@ class MainCollectionViewCell: UICollectionViewCell {
         linkButton.tintColor = .white
         
         backgroundImageView.contentMode = .scaleAspectFill
-        
     }
-
 }
