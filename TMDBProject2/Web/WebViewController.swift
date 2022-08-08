@@ -22,7 +22,8 @@ class WebViewController: UIViewController {
   
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "확인", style: .plain, target: self, action: #selector(dismissView))
             
-        openWeb(url: key!)
+        guard let key = key else { return }
+        openWeb(url: key)
     }
     
     @objc func dismissView() {
