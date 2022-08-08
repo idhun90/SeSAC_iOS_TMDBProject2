@@ -44,6 +44,7 @@ class DetailViewController: UIViewController {
         fetchID(movieId: movieData.movieid)
     }
     
+    //MARK: - TMDB 네트워크 통신 요청
     func fetchID(movieId: Int) {
         
         let url = "\(EndPoint.tmdCastCrew)/\(movieId)/credits?api_key=\(APIKey.TMDB)"
@@ -61,7 +62,7 @@ class DetailViewController: UIViewController {
                     let data = Cast(name: name, character: character, profile_path: profile)
                     self.castInfo.append(data)
                     
-                    print(name)
+                    print("====== cast name: \(name) ======")
                 }
                 
                 for crew in json["crew"].arrayValue {
@@ -71,11 +72,11 @@ class DetailViewController: UIViewController {
                     
                     let data = Crew(name: name, job: job, profile_path: profile)
                     self.crewInfo.append(data)
-                    print("======crew name: \(name)=======")
+                    print("====== crew name: \(name) ======")
                 }
                 self.detailTableView.reloadData()
-                print("======\(self.castInfo.count)======")
-                print("======\(self.crewInfo.count)======")
+                print("====== cast 배열 count: \(self.castInfo.count) ======")
+                print("====== crew 배열 count: \(self.crewInfo.count) ======")
                 
                 
      
@@ -85,9 +86,10 @@ class DetailViewController: UIViewController {
         }
     }
     
+    //MARK: - layout 및 초기 데이터 가져오기
     func viewLayout() {
         
-        blurImageView.backgroundColor = .black.withAlphaComponent(0.5)
+        blurImageView.backgroundColor = .black.withAlphaComponent(0.4)
         
         posterImageView.layer.borderWidth = 1
         posterImageView.layer.borderColor = UIColor.systemGray.cgColor

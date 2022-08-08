@@ -30,14 +30,14 @@ class MainViewController: UIViewController {
         
         navigationController?.navigationBar.tintColor = .black
     }
-    
+    //MARK: - TBDM 네트워크 통신 요청
     func fetchTBDM(page: Int) {
         let url = "\(EndPoint.tmdbURL)?api_key=\(APIKey.TMDB)&page=\(page)"
         AF.request(url, method: .get).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                //                print("JSON: \(json)")
+                //print("JSON: \(json)")
                 
                 for movie in json["results"].arrayValue {
                     
@@ -77,7 +77,6 @@ class MainViewController: UIViewController {
     }
     
     func fetchGenre() {
-        
         let url = "\(EndPoint.getTmdbGenre)?api_key=\(APIKey.TMDB)"
         AF.request(url, method: .get).validate().responseJSON { response in
             switch response.result {
@@ -102,12 +101,11 @@ class MainViewController: UIViewController {
     
     func fetchVideo(id: Int) {
         let url = "\(EndPoint.tmdCastCrew)/\(id)/videos?api_key=\(APIKey.TMDB)"
-
         AF.request(url, method: .get).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                print("JSON: \(json)")
+//                print("JSON: \(json)")
                 
                 let sb = UIStoryboard(name: StoryBoardName.web, bundle: nil)
                 guard let vc = sb.instantiateViewController(withIdentifier: WebViewController.ReusableIdentifier) as? WebViewController else { return }
@@ -124,7 +122,7 @@ class MainViewController: UIViewController {
     }
     
     
-    
+    //MARK: - Layout
     func collectionViewLayout() {
         let layout = UICollectionViewFlowLayout()
         let spacing: CGFloat = 5
@@ -138,7 +136,13 @@ class MainViewController: UIViewController {
         
         MainCollectionView.collectionViewLayout = layout
     }
-    
+    //MARK: - Action 함수
+    @objc func clickedLinkButton(sender: UIButton) {
+        
+        let id = movieData[sender.tag].movieid
+        fetchVideo(id: id)
+        
+    }
 }
 
 //MARK: - CollectionView Protocol 채택
@@ -167,7 +171,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         cell.voteIntLabel.text = String(Int(movieData[indexPath.row].vote))
         cell.titleLabel.text = movieData[indexPath.row].title
-//        print("cell title:\(movieData[indexPath.row].title), \(indexPath.row)번 째")
         cell.overViewLabel.text = movieData[indexPath.row].overview
         
         let url = URL(string: movieData[indexPath.row].image)
@@ -179,14 +182,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.genreLabel.text = "#" + genre[movieData[indexPath.row].genreid]!
         
         return cell
-    }
-    
-    @objc func clickedLinkButton(sender: UIButton) {
-        
-        let id = movieData[sender.tag].movieid
-        print(id)
-        fetchVideo(id: id)
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

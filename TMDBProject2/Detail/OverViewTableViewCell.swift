@@ -8,7 +8,7 @@ class OverViewTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        overViewLabel.font = .systemFont(ofSize: 15)
+        overViewLabel.font = .systemFont(ofSize: 16)
         overViewLabel.numberOfLines = 2
     }
 
