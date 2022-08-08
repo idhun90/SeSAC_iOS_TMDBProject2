@@ -14,12 +14,31 @@ class MainCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    
+    // 값 전달 받을 목적
+    var genre: [Int: String] = [:]
 
     override func awakeFromNib() {
         super.awakeFromNib()
         layout()
     }
 
+    func configCell(data: Movie) {
+        
+        let date = DateFormatter()
+        date.dateFormat = "yyyy.mm.dd"
+        let newDate = date.date(from: data.release)
+        dateLabel.text = date.string(from: newDate!)
+        
+        voteIntLabel.text = String(Int(data.vote))
+        titleLabel.text = data.title
+        overViewLabel.text = data.overview
+        
+        let url = URL(string: data.image)
+        backgroundImageView.kf.setImage(with: url)
+        
+        genreLabel.text = "#" + (genre[data.genreid] ?? "장르")
+    }
 }
 
 extension MainCollectionViewCell: CellLayout {

@@ -54,7 +54,6 @@ class DetailViewController: UIViewController {
     }
     
     //MARK: - TMDB 네트워크 통신 요청
-    
     func fetchCastCrewByAPIManager(moiveID: Int) {
         APIManager.shared.fetchCastCrew(movieId: moiveID) { json in
             for cast in json["cast"].arrayValue {
@@ -165,19 +164,21 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.section == Section.overView.rawValue {
             guard let cell = detailTableView.dequeueReusableCell(withIdentifier: OverViewTableViewCell.ReusableIdentifier, for: indexPath) as? OverViewTableViewCell else { return UITableViewCell() }
+            //print("===== 현재 섹션 0 체크용: \(indexPath.section) =====")
             
-            cell.overViewLabel.text = movieData?.overview
+            if let movieData = movieData {
+                cell.configCell(data: movieData)
+            } else {
+                print("movieData에 값이 없습니다.")
+            }
             
             return cell
             
         } else {
-            print("===== 현재 섹션: \(indexPath.section) =====")
+            //print("===== 현재 섹션: \(indexPath.section) =====")
             guard let cell = detailTableView.dequeueReusableCell(withIdentifier: CastCrewTableViewCell.ReusableIdentifier, for: indexPath) as? CastCrewTableViewCell else { return UITableViewCell() }
             
-            let url = indexPath.section == Section.cast.rawValue ? URL(string: castInfo[indexPath.row].profile_path) : URL(string: crewInfo[indexPath.row].profile_path)
-            cell.castCrewImageView.kf.setImage(with: url)
-            cell.nameLabel.text = indexPath.section == Section.cast.rawValue ? castInfo[indexPath.row].name : crewInfo[indexPath.row].name
-            cell.characterOrJobLabel.text = indexPath.section == Section.cast.rawValue ? castInfo[indexPath.row].character : crewInfo[indexPath.row].job
+            indexPath.section == Section.cast.rawValue ? cell.configCastCell(data: castInfo[indexPath.row]) : cell.configCrewCell(data: crewInfo[indexPath.row])
             
             return cell
         }

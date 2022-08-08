@@ -26,7 +26,6 @@ class MainViewController: UIViewController {
         
         fetchMovieByAPIManager(page: page)
         
-        
         navigationController?.navigationBar.tintColor = .black
     }
     //MARK: - TBDM 네트워크 통신 요청
@@ -104,7 +103,6 @@ class MainViewController: UIViewController {
     }
     
     //MARK: - Action 함수
-    
     func transitionWithKeyValue(key: String) {
         let sb = UIStoryboard(name: StoryBoardName.web, bundle: nil)
         guard let vc = sb.instantiateViewController(withIdentifier: WebViewController.ReusableIdentifier) as? WebViewController else { return }
@@ -142,23 +140,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = MainCollectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.ReusableIdentifier, for: indexPath) as? MainCollectionViewCell else { return UICollectionViewCell() }
         
-        let date = DateFormatter()
-        date.dateFormat = "yyyy.mm.dd"
-        let newDate = date.date(from: movieData[indexPath.row].release)
-        cell.dateLabel.text = date.string(from: newDate!)
-        
-        cell.voteIntLabel.text = String(Int(movieData[indexPath.row].vote))
-        cell.titleLabel.text = movieData[indexPath.row].title
-        cell.overViewLabel.text = movieData[indexPath.row].overview
-        
-        let url = URL(string: movieData[indexPath.row].image)
-        cell.backgroundImageView.kf.setImage(with: url)
+        cell.genre = self.genre
+        cell.configCell(data: movieData[indexPath.row])
         
         cell.linkButton.tag = indexPath.row
         cell.linkButton.addTarget(self, action: #selector(clickedLinkButton), for: .touchUpInside)
-        
-        cell.genreLabel.text = "#" + genre[movieData[indexPath.row].genreid]!
-        
+
         return cell
     }
     

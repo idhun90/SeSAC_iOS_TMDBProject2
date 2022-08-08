@@ -22,6 +22,19 @@ class CastCrewTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    func configCastCell(data: Cast) {
+        let url = URL(string: data.profile_path)
+        castCrewImageView.kf.setImage(with: url)
+        nameLabel.text = data.name
+        characterOrJobLabel.text = data.character
+    }
+    
+    func configCrewCell(data: Crew) {
+        let url = URL(string: data.profile_path)
+        castCrewImageView.kf.setImage(with: url)
+        nameLabel.text = data.name
+        characterOrJobLabel.text = data.job
+    }
 }
 
 extension CastCrewTableViewCell: CellLayout {
