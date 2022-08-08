@@ -19,7 +19,6 @@ enum Section: Int, CaseIterable {
             return "Crew"
         }
     }
-    
 }
 
 class DetailViewController: UIViewController {
@@ -165,14 +164,14 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.section {
-        case 0:
+        case Section.overView.rawValue:
             guard let cell = detailTableView.dequeueReusableCell(withIdentifier: OverViewTableViewCell.ReusableIdentifier, for: indexPath) as? OverViewTableViewCell else { return UITableViewCell() }
             
             cell.overViewLabel.text = movieData?.overview
             
             return cell
             
-        case 1:
+        case Section.cast.rawValue:
             // Cast
             guard let cell = detailTableView.dequeueReusableCell(withIdentifier: CastCrewTableViewCell.ReusableIdentifier, for: indexPath) as? CastCrewTableViewCell else { return UITableViewCell() }
             let url = URL(string: castInfo[indexPath.row].profile_path)
@@ -182,7 +181,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             
             return cell
             
-        case 2:
+        case Section.crew.rawValue:
             //Crew
             guard let cell = detailTableView.dequeueReusableCell(withIdentifier: CastCrewTableViewCell.ReusableIdentifier, for: indexPath) as? CastCrewTableViewCell else { return UITableViewCell() }
             let url = URL(string: crewInfo[indexPath.row].profile_path)
