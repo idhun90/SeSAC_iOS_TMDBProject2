@@ -163,38 +163,22 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch indexPath.section {
-        case Section.overView.rawValue:
+        if indexPath.section == Section.overView.rawValue {
             guard let cell = detailTableView.dequeueReusableCell(withIdentifier: OverViewTableViewCell.ReusableIdentifier, for: indexPath) as? OverViewTableViewCell else { return UITableViewCell() }
             
             cell.overViewLabel.text = movieData?.overview
             
             return cell
             
-        case Section.cast.rawValue:
-            // Cast
+        } else {
             guard let cell = detailTableView.dequeueReusableCell(withIdentifier: CastCrewTableViewCell.ReusableIdentifier, for: indexPath) as? CastCrewTableViewCell else { return UITableViewCell() }
-            let url = URL(string: castInfo[indexPath.row].profile_path)
+            
+            let url = indexPath.section == Section.cast.rawValue ? URL(string: castInfo[indexPath.row].profile_path) : URL(string: crewInfo[indexPath.row].profile_path)
             cell.castCrewImageView.kf.setImage(with: url)
-            cell.nameLabel.text = castInfo[indexPath.row].name
-            cell.characterOrJobLabel.text = castInfo[indexPath.row].character
+            cell.nameLabel.text = indexPath.section == Section.cast.rawValue ? castInfo[indexPath.row].name : crewInfo[indexPath.row].name
+            cell.characterOrJobLabel.text = indexPath.section == Section.cast.rawValue ? castInfo[indexPath.row].character : crewInfo[indexPath.row].job
             
             return cell
-            
-        case Section.crew.rawValue:
-            //Crew
-            guard let cell = detailTableView.dequeueReusableCell(withIdentifier: CastCrewTableViewCell.ReusableIdentifier, for: indexPath) as? CastCrewTableViewCell else { return UITableViewCell() }
-            let url = URL(string: crewInfo[indexPath.row].profile_path)
-            cell.castCrewImageView.kf.setImage(with: url)
-            cell.nameLabel.text = crewInfo[indexPath.row].name
-            cell.characterOrJobLabel.text = crewInfo[indexPath.row].job
-            
-            return cell
-            
-        default:
-            return UITableViewCell()
         }
     }
-    
-    
 }
