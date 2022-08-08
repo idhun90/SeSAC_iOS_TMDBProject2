@@ -22,19 +22,34 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fIl-Jz-iDZ">
+                        <rect key="frame" x="138" y="114" width="44" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="0aR-uk-9Vs"/>
+                            <constraint firstAttribute="width" constant="44" id="zaE-6N-5Wc"/>
+                        </constraints>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="chevron.down" catalog="system"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ZQt-YW-L7Y" secondAttribute="trailing" constant="25" id="5jn-BV-PYx"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ZQt-YW-L7Y" secondAttribute="bottom" constant="10" id="5x5-yQ-5Tb"/>
                     <constraint firstItem="ZQt-YW-L7Y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="9rV-8I-z5X"/>
                     <constraint firstItem="ZQt-YW-L7Y" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="bbg-bK-S5y"/>
+                    <constraint firstItem="fIl-Jz-iDZ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ZQt-YW-L7Y" secondAttribute="bottom" constant="5" id="nkN-bk-BFg"/>
+                    <constraint firstItem="fIl-Jz-iDZ" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="uUi-A0-AEv"/>
+                    <constraint firstAttribute="bottom" secondItem="fIl-Jz-iDZ" secondAttribute="bottom" constant="5" id="wmy-Pc-AIC"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="expandButton" destination="fIl-Jz-iDZ" id="Qpo-Ep-7cE"/>
                 <outlet property="overViewLabel" destination="ZQt-YW-L7Y" id="p2Y-Jm-zxt"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="152.34375"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="chevron.down" catalog="system" width="128" height="72"/>
+    </resources>
 </document>

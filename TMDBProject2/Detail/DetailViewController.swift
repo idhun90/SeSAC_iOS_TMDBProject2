@@ -34,6 +34,7 @@ class DetailViewController: UIViewController {
     var movieData: Movie?
     var castInfo: [Cast] = []
     var crewInfo: [Crew] = []
+    var isExpanded: Bool = false // flase: 2, true : 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,6 +116,17 @@ class DetailViewController: UIViewController {
         titleLabel.text = movieData.title
         
     }
+    
+    //MARK: - Action 메소드
+    
+    @objc func controllExpand(_ sender: UIButton) {
+        
+        isExpanded = !isExpanded
+        detailTableView.reloadData()
+        
+        
+    }
+    
 }
 
 //MARK: - TableViewController 관련 Protocol 채택
@@ -127,7 +139,11 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return indexPath.section == Section.overView.rawValue ? UITableView.automaticDimension : 80
+        
+//        detailTableView.rowHeight = UITableView.automaticDimension
+//        detailTableView.estimatedRowHeight = 100
+        
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -171,6 +187,9 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 print("movieData에 값이 없습니다.")
             }
+            
+            cell.overViewLabel.numberOfLines = isExpanded ? 0 : 2
+            cell.expandButton.addTarget(self, action: #selector(controllExpand(_:)), for: .touchUpInside)
             
             return cell
             

@@ -4,6 +4,7 @@ import UIKit
 class OverViewTableViewCell: UITableViewCell {
 
     @IBOutlet weak var overViewLabel: UILabel!
+    @IBOutlet weak var expandButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,6 +23,7 @@ class OverViewTableViewCell: UITableViewCell {
 extension OverViewTableViewCell: CellLayout {
     func layout() {
         overViewLabel.font = .systemFont(ofSize: 16)
-        overViewLabel.numberOfLines = 2
+        overViewLabel.numberOfLines = 0
+        expandButton.tintColor = .black
     }
 }
