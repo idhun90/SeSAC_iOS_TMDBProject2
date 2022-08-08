@@ -4,14 +4,26 @@ import Alamofire
 import Kingfisher
 import SwiftyJSON
 
-enum SectionName: String, CaseIterable {
-    case overView = "OverView"
-    case cast = "Cast"
-    case crew = "Crew"
+enum Section: Int, CaseIterable {
+    case overView
+    case cast
+    case crew
+    
+    var sectionTitle: String {
+        switch self {
+        case .overView:
+            return "OverView"
+        case .cast:
+            return "Cast"
+        case .crew:
+            return "Crew"
+        }
+    }
+    
 }
 
 class DetailViewController: UIViewController {
-
+    
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var blurImageView: UIView!
@@ -43,7 +55,7 @@ class DetailViewController: UIViewController {
     }
     
     //MARK: - TMDB 네트워크 통신 요청
-
+    
     func fetchCastCrewByAPIManager(moiveID: Int) {
         APIManager.shared.fetchCastCrew(movieId: moiveID) { json in
             for cast in json["cast"].arrayValue {
@@ -87,7 +99,7 @@ class DetailViewController: UIViewController {
         titleLabel.textColor = .white
         
     }
-
+    
     func loadData() {
         
         guard let movieData = movieData else { return }
@@ -111,8 +123,8 @@ class DetailViewController: UIViewController {
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-
-        return SectionName.allCases.count // 타입 프로퍼티로 사용시 사용불가하여, case로 변경
+        
+        return Section.allCases.count
         
     }
     
@@ -123,12 +135,12 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         switch section {
-        case 0:
-            return SectionName.overView.rawValue
-        case 1:
-            return SectionName.cast.rawValue
-        case 2:
-            return SectionName.crew.rawValue
+        case Section.overView.rawValue:
+            return Section.overView.sectionTitle
+        case Section.cast.rawValue:
+            return Section.cast.sectionTitle
+        case Section.crew.rawValue:
+            return Section.crew.sectionTitle
         default :
             return "기본"
         }
@@ -137,12 +149,12 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch section {
-        case 0:
+        case Section.overView.rawValue:
             return 1
-        case 1:
+        case Section.cast.rawValue:
             return castInfo.count
-           
-        case 2:
+            
+        case Section.crew.rawValue:
             return crewInfo.count
             
         default:
@@ -151,7 +163,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         switch indexPath.section {
         case 0:
             guard let cell = detailTableView.dequeueReusableCell(withIdentifier: OverViewTableViewCell.ReusableIdentifier, for: indexPath) as? OverViewTableViewCell else { return UITableViewCell() }
@@ -161,7 +173,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
             
         case 1:
-//            // Cast
+            // Cast
             guard let cell = detailTableView.dequeueReusableCell(withIdentifier: CastCrewTableViewCell.ReusableIdentifier, for: indexPath) as? CastCrewTableViewCell else { return UITableViewCell() }
             let url = URL(string: castInfo[indexPath.row].profile_path)
             cell.castCrewImageView.kf.setImage(with: url)
@@ -171,7 +183,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
             
         case 2:
-//            // Crew
+            //Crew
             guard let cell = detailTableView.dequeueReusableCell(withIdentifier: CastCrewTableViewCell.ReusableIdentifier, for: indexPath) as? CastCrewTableViewCell else { return UITableViewCell() }
             let url = URL(string: crewInfo[indexPath.row].profile_path)
             cell.castCrewImageView.kf.setImage(with: url)
@@ -179,7 +191,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             cell.characterOrJobLabel.text = crewInfo[indexPath.row].job
             
             return cell
-             
+            
         default:
             return UITableViewCell()
         }
