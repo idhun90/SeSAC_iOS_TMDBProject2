@@ -4,7 +4,7 @@ import Alamofire
 import Kingfisher
 import SwiftyJSON
 
-enum SectionName:String, CaseIterable {
+enum SectionName: String, CaseIterable {
     case overView = "OverView"
     case cast = "Cast"
     case crew = "Crew"
@@ -35,54 +35,42 @@ class DetailViewController: UIViewController {
         detailTableView.register(overViewNib, forCellReuseIdentifier: OverViewTableViewCell.ReusableIdentifier)
         detailTableView.register(CastCrewViewNib, forCellReuseIdentifier: CastCrewTableViewCell.ReusableIdentifier)
         
-        detailTableView.rowHeight = 90
-        
         viewLayout()
         loadData()
         
         guard let movieData = movieData else { return }
-        fetchID(movieId: movieData.movieid)
+        fetchCastCrewByAPIManager(moiveID: movieData.movieid)
     }
     
     //MARK: - TMDB 네트워크 통신 요청
-    func fetchID(movieId: Int) {
-        
-        let url = "\(EndPoint.tmdCastCrew)/\(movieId)/credits?api_key=\(APIKey.TMDB)"
-        AF.request(url, method: .get).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-//                print("JSON: \(json)")
+
+    func fetchCastCrewByAPIManager(moiveID: Int) {
+        APIManager.shared.fetchCastCrew(movieId: moiveID) { json in
+            for cast in json["cast"].arrayValue {
+                let name = cast["name"].stringValue
+                let character = cast["character"].stringValue
+                let profile = EndPoint.tmdImage + cast["profile_path"].stringValue
                 
-                for cast in json["cast"].arrayValue {
-                    let name = cast["name"].stringValue
-                    let character = cast["character"].stringValue
-                    let profile = EndPoint.tmdImage + cast["profile_path"].stringValue
-                    
-                    let data = Cast(name: name, character: character, profile_path: profile)
-                    self.castInfo.append(data)
-                    
-                    print("====== cast name: \(name) ======")
-                }
+                let data = Cast(name: name, character: character, profile_path: profile)
+                self.castInfo.append(data)
                 
-                for crew in json["crew"].arrayValue {
-                    let name = crew["name"].stringValue
-                    let job = crew["job"].stringValue
-                    let profile = EndPoint.tmdImage + crew["profile_path"].stringValue
-                    
-                    let data = Crew(name: name, job: job, profile_path: profile)
-                    self.crewInfo.append(data)
-                    print("====== crew name: \(name) ======")
-                }
-                self.detailTableView.reloadData()
-                print("====== cast 배열 count: \(self.castInfo.count) ======")
-                print("====== crew 배열 count: \(self.crewInfo.count) ======")
-                
-                
-     
-            case .failure(let error):
-                print(error)
+                print("====== cast name: \(name) ======")
             }
+            
+            for crew in json["crew"].arrayValue {
+                let name = crew["name"].stringValue
+                let job = crew["job"].stringValue
+                let profile = EndPoint.tmdImage + crew["profile_path"].stringValue
+                
+                let data = Crew(name: name, job: job, profile_path: profile)
+                self.crewInfo.append(data)
+                print("====== crew name: \(name) ======")
+            }
+            
+            self.detailTableView.reloadData()
+            
+            print("====== cast 배열 count: \(self.castInfo.count) ======")
+            print("====== crew 배열 count: \(self.crewInfo.count) ======")
         }
     }
     
@@ -128,9 +116,9 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 80 // 왜 오류가 발생하지?
-//    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
@@ -163,8 +151,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = detailTableView.dequeueReusableCell(withIdentifier: CastCrewTableViewCell.ReusableIdentifier, for: indexPath) as? CastCrewTableViewCell else { return UITableViewCell() }
-        
+
         switch indexPath.section {
         case 0:
             guard let cell = detailTableView.dequeueReusableCell(withIdentifier: OverViewTableViewCell.ReusableIdentifier, for: indexPath) as? OverViewTableViewCell else { return UITableViewCell() }
@@ -174,7 +161,8 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
             
         case 1:
-            // Cast
+//            // Cast
+            guard let cell = detailTableView.dequeueReusableCell(withIdentifier: CastCrewTableViewCell.ReusableIdentifier, for: indexPath) as? CastCrewTableViewCell else { return UITableViewCell() }
             let url = URL(string: castInfo[indexPath.row].profile_path)
             cell.castCrewImageView.kf.setImage(with: url)
             cell.nameLabel.text = castInfo[indexPath.row].name
@@ -183,13 +171,15 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
             
         case 2:
-            // Crew
+//            // Crew
+            guard let cell = detailTableView.dequeueReusableCell(withIdentifier: CastCrewTableViewCell.ReusableIdentifier, for: indexPath) as? CastCrewTableViewCell else { return UITableViewCell() }
             let url = URL(string: crewInfo[indexPath.row].profile_path)
             cell.castCrewImageView.kf.setImage(with: url)
             cell.nameLabel.text = crewInfo[indexPath.row].name
             cell.characterOrJobLabel.text = crewInfo[indexPath.row].job
             
             return cell
+             
         default:
             return UITableViewCell()
         }

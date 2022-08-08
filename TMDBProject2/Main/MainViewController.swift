@@ -24,103 +24,69 @@ class MainViewController: UIViewController {
         MainCollectionView.register(nib, forCellWithReuseIdentifier: MainCollectionViewCell.ReusableIdentifier)
         collectionViewLayout()
         
-        fetchGenre()
-        fetchTBDM(page: page)
+        fetchMovieByAPIManager(page: page)
         
         
         navigationController?.navigationBar.tintColor = .black
     }
     //MARK: - TBDM 네트워크 통신 요청
-    func fetchTBDM(page: Int) {
-        let url = "\(EndPoint.tmdbURL)?api_key=\(APIKey.TMDB)&page=\(page)"
-        AF.request(url, method: .get).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                //print("JSON: \(json)")
+    
+    func fetchMovieByAPIManager(page: Int) {
+        APIManager.shared.fetchMovie(page: page) { json in
+            
+            for movie in json["results"].arrayValue {
                 
-                for movie in json["results"].arrayValue {
-                    
-                    let title = movie["title"].stringValue
-                    let release = movie["release_date"].stringValue
-                    let overview = movie["overview"].stringValue
-                    let backImage = EndPoint.tmdImage + movie["backdrop_path"].stringValue
-                    let posterImage = EndPoint.tmdImage + movie["poster_path"].stringValue
-                    let vote = movie["vote_average"].doubleValue
-                    let movieId = movie["id"].intValue
-                    let genreid = movie["genre_ids"][0].intValue
-                    
-                    print("현재 페이지 \(page)")
-                    print("영화 제목 \(title)")
-                    
-                    let data = Movie(title: title, release: release, overview: overview, image: backImage, vote: vote, poster: posterImage, movieid: movieId, genreid: genreid)
-                    
-                    self.movieData.append(data)
-                    
-                    print("json 타이틀: \(title)")
-                    print("data 타이틀: \(data.title)")
-                    print("movieID: \(movieId)")
-                    print("genreID: \(genreid)")
-                    
-                    print("data 갯수: \(self.movieData.count)")
-                    print("================")
-                    
-                    
-                }
+                let title = movie["title"].stringValue
+                let release = movie["release_date"].stringValue
+                let overview = movie["overview"].stringValue
+                let backImage = EndPoint.tmdImage + movie["backdrop_path"].stringValue
+                let posterImage = EndPoint.tmdImage + movie["poster_path"].stringValue
+                let vote = movie["vote_average"].doubleValue
+                let movieId = movie["id"].intValue
+                let genreid = movie["genre_ids"][0].intValue
                 
+                print("현재 페이지 \(self.page)")
+                print("영화 제목 \(title)")
+                
+                let data = Movie(title: title, release: release, overview: overview, image: backImage, vote: vote, poster: posterImage, movieid: movieId, genreid: genreid)
+                
+                self.movieData.append(data)
+                // self.MainCollectionView.reloadData()
+                
+                self.fetchGenreByAPIManager()
+                
+                print("json 타이틀: \(title)")
+                print("data 타이틀: \(data.title)")
+                print("movieID: \(movieId)")
+                print("genreID: \(genreid)")
+                
+                print("data 갯수: \(self.movieData.count)")
+                print("================")
+                
+            }
+        }
+    }
+    
+    func fetchGenreByAPIManager() {
+        APIManager.shared.fetchGenre { json in
+            for dictionary in json["genres"].arrayValue {
+                let key = dictionary["id"].intValue
+                let value = dictionary["name"].stringValue
+                
+                self.genre.updateValue(value, forKey: key)
                 self.MainCollectionView.reloadData()
-                
-            case .failure(let error):
-                print(error)
             }
+            
+            print("장르 딕셔너리: \(self.genre)")
         }
     }
     
-    func fetchGenre() {
-        let url = "\(EndPoint.getTmdbGenre)?api_key=\(APIKey.TMDB)"
-        AF.request(url, method: .get).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                print("JSON: \(json)")
-                
-                for dictionary in json["genres"].arrayValue {
-                    let key = dictionary["id"].intValue
-                    let value = dictionary["name"].stringValue
-                    
-                    self.genre.updateValue(value, forKey: key)
-                }
-                
-                print("장르 딕셔너리: \(self.genre)")
-                
-            case .failure(let error):
-                print(error)
-            }
+    func fetchVideoByAPIManager(id: Int) {
+        APIManager.shared.fetchVideo(id: id) { json in
+            let key = json["results"][0]["key"].stringValue
+            self.transitionWithKeyValue(key: key)
         }
     }
-    
-    func fetchVideo(id: Int) {
-        let url = "\(EndPoint.tmdCastCrew)/\(id)/videos?api_key=\(APIKey.TMDB)"
-        AF.request(url, method: .get).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-//                print("JSON: \(json)")
-                
-                let sb = UIStoryboard(name: StoryBoardName.web, bundle: nil)
-                guard let vc = sb.instantiateViewController(withIdentifier: WebViewController.ReusableIdentifier) as? WebViewController else { return }
-                
-                vc.key = (json["results"][0]["key"].stringValue)
-                
-                let nav = UINavigationController(rootViewController: vc)
-                self.present(nav, animated: true)
-                
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
     
     //MARK: - Layout
     func collectionViewLayout() {
@@ -136,12 +102,23 @@ class MainViewController: UIViewController {
         
         MainCollectionView.collectionViewLayout = layout
     }
+    
     //MARK: - Action 함수
+    
+    func transitionWithKeyValue(key: String) {
+        let sb = UIStoryboard(name: StoryBoardName.web, bundle: nil)
+        guard let vc = sb.instantiateViewController(withIdentifier: WebViewController.ReusableIdentifier) as? WebViewController else { return }
+        
+        vc.key = key
+        
+        let nav = UINavigationController(rootViewController: vc)
+        self.present(nav, animated: true)
+    }
+    
     @objc func clickedLinkButton(sender: UIButton) {
-        
         let id = movieData[sender.tag].movieid
-        fetchVideo(id: id)
         
+        fetchVideoByAPIManager(id: id)
     }
 }
 
@@ -152,7 +129,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         for indexPath in indexPaths {
             if movieData.count - 1 == indexPath.item && movieData.count < totalPage {
                 page += 1
-                fetchTBDM(page: page)
+                
+                fetchMovieByAPIManager(page: page)
             }
         }
     }
