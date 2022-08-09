@@ -24,7 +24,7 @@ class MainListViewController: UIViewController {
         mainTableView.register(nib, forCellReuseIdentifier: MainTableViewCell.ReusableIdentifier)
         
         view.backgroundColor = .black
-        mainTableView.backgroundColor = .black
+        mainTableView.backgroundColor = .clear
         
         // 안됨
         // mainTableView.rowHeight = UITableView.automaticDimension
@@ -51,6 +51,8 @@ extension MainListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.listCollectionView.delegate = self
         cell.listCollectionView.dataSource = self
         cell.titleLabel.text = sectionTitle[indexPath.section]
+        cell.listCollectionView.tag = indexPath.section
+        print(indexPath.section)
         
         
         let cellNib = UINib(nibName: ListCollectionViewCell.ReusableIdentifier, bundle: nil)
@@ -61,19 +63,21 @@ extension MainListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return (UIScreen.main.bounds.height * 0.2 + 10 + 28 + 4)
+        return (UIScreen.main.bounds.height * 0.2 + 10 + 28 + 5) // 높이가 item 및 여백 합한 값과 딱 같을 경우 콘솔창에 아이템 높이는 컬렉션 뷰 상, 하 여백 을 뺀 값보다 작아야 한다고 한다. 딱 같아도 콘솔 오류가 뜸.
+
     }
     
 }
 
 extension MainListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return numberList[collectionView.tag].count
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCollectionViewCell.ReusableIdentifier, for: indexPath) as? ListCollectionViewCell else { return UICollectionViewCell() }
-        
+        print("======= \(indexPath.section): \(indexPath.item) ========")
         
         return cell
     }

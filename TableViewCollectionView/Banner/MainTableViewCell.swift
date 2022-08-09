@@ -29,7 +29,7 @@ class MainTableViewCell: UITableViewCell {
         
 //        self.backgroundColor = .systemGreen
         self.backgroundColor = .clear
-        self.contentView.backgroundColor = .black
+        self.contentView.backgroundColor = .clear
 //        self.backgroundColor = .clear
         listCollectionView.backgroundColor = .black
         listCollectionView.collectionViewLayout = collectionViewLayout()
@@ -40,9 +40,9 @@ class MainTableViewCell: UITableViewCell {
     
     func collectionViewLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
-        let spacing: CGFloat = 10
+        let spacing: CGFloat = 0
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.height * 0.2)
-        layout.minimumLineSpacing = spacing
+        layout.minimumLineSpacing = 3
         layout.minimumInteritemSpacing = spacing
         layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         
