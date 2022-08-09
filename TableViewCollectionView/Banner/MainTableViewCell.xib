@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainTableViewCell" rowHeight="183" id="KGk-i7-Jjw" customClass="MainTableViewCell" customModule="TMDBProject2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="341" height="183"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="341" height="183"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="SCK-Q7-DOX">
+                        <rect key="frame" x="0.0" y="42" width="341" height="141"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rCs-m9-X4Y">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6B8-Zm-IEU">
+                        <rect key="frame" x="10" y="10" width="321" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="28" id="Tlf-lN-b30"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="6B8-Zm-IEU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="2rf-Cx-y30"/>
+                    <constraint firstItem="SCK-Q7-DOX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="9Mj-ff-Las"/>
+                    <constraint firstAttribute="trailing" secondItem="SCK-Q7-DOX" secondAttribute="trailing" id="KLa-NZ-gZJ"/>
+                    <constraint firstItem="6B8-Zm-IEU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Udz-1F-SxT"/>
+                    <constraint firstAttribute="bottom" secondItem="SCK-Q7-DOX" secondAttribute="bottom" id="gqb-GQ-Vdg"/>
+                    <constraint firstAttribute="trailing" secondItem="6B8-Zm-IEU" secondAttribute="trailing" constant="10" id="ldl-2q-m9V"/>
+                    <constraint firstItem="SCK-Q7-DOX" firstAttribute="top" secondItem="6B8-Zm-IEU" secondAttribute="bottom" constant="4" id="omF-fO-bes"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="listCollectionView" destination="SCK-Q7-DOX" id="58T-S0-B07"/>
+                <outlet property="titleLabel" destination="6B8-Zm-IEU" id="XwO-NY-IKS"/>
+            </connections>
+            <point key="canvasLocation" x="152.89855072463769" y="243.41517857142856"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
