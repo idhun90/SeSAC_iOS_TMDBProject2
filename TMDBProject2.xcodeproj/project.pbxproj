@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		145D16D828A3B4BD007B2FB9 /* TMDBAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145D16D728A3B4BD007B2FB9 /* TMDBAPIManager.swift */; };
+		145D16DA28A3CCD9007B2FB9 /* TMDBMovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145D16D928A3CCD9007B2FB9 /* TMDBMovieData.swift */; };
 		1478255228A2303F00912F9F /* MainView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1478255128A2303F00912F9F /* MainView.storyboard */; };
 		1478255628A2318000912F9F /* MainListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1478255528A2318000912F9F /* MainListViewController.swift */; };
 		1478255928A233A900912F9F /* BannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1478255828A233A900912F9F /* BannerView.xib */; };
@@ -42,6 +44,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		145D16D728A3B4BD007B2FB9 /* TMDBAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPIManager.swift; sourceTree = "<group>"; };
+		145D16D928A3CCD9007B2FB9 /* TMDBMovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBMovieData.swift; sourceTree = "<group>"; };
 		1478255128A2303F00912F9F /* MainView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainView.storyboard; sourceTree = "<group>"; };
 		1478255528A2318000912F9F /* MainListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListViewController.swift; sourceTree = "<group>"; };
 		1478255828A233A900912F9F /* BannerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerView.xib; sourceTree = "<group>"; };
@@ -99,6 +103,8 @@
 				1478256328A29A9700912F9F /* ListCollectionViewCell.xib */,
 				1478255E28A2908700912F9F /* MainTableViewCell.swift */,
 				1478255F28A2908700912F9F /* MainTableViewCell.xib */,
+				145D16D728A3B4BD007B2FB9 /* TMDBAPIManager.swift */,
+				145D16D928A3CCD9007B2FB9 /* TMDBMovieData.swift */,
 			);
 			path = TableViewCollectionView;
 			sourceTree = "<group>";
@@ -283,6 +289,7 @@
 			files = (
 				1478255D28A236EA00912F9F /* BannerView.swift in Sources */,
 				14DEB65F28A10D17007B48D8 /* APIManager.swift in Sources */,
+				145D16DA28A3CCD9007B2FB9 /* TMDBMovieData.swift in Sources */,
 				1478255628A2318000912F9F /* MainListViewController.swift in Sources */,
 				14AD3C01289E7B77008AD14C /* Movie.swift in Sources */,
 				1478256028A2908700912F9F /* MainTableViewCell.swift in Sources */,
@@ -291,6 +298,7 @@
 				14AD3BF5289E5CF7008AD14C /* MainCollectionViewCell.swift in Sources */,
 				14AD3BED289E576B008AD14C /* Constant.swift in Sources */,
 				14AD3C0A289EAD06008AD14C /* OverViewTableViewCell.swift in Sources */,
+				145D16D828A3B4BD007B2FB9 /* TMDBAPIManager.swift in Sources */,
 				1478256428A29A9700912F9F /* ListCollectionViewCell.swift in Sources */,
 				14AD3BF2289E5A9D008AD14C /* MainViewController.swift in Sources */,
 				14AD3BEB289E575B008AD14C /* APIKey.swift in Sources */,
