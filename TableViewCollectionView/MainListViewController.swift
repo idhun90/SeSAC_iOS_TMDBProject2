@@ -12,6 +12,7 @@ class MainListViewController: UIViewController {
     var similarMovie: [SimilarMoive] = []
     var nowplayingMovie: [NowPlaying] = []
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

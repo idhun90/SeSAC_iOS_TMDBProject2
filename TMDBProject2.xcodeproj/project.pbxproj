@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1459B9E728A54643008DF067 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1459B9E628A54643008DF067 /* Map.storyboard */; };
+		1459B9E928A54651008DF067 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1459B9E828A54651008DF067 /* MapViewController.swift */; };
 		145D16D828A3B4BD007B2FB9 /* TMDBAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145D16D728A3B4BD007B2FB9 /* TMDBAPIManager.swift */; };
 		145D16DA28A3CCD9007B2FB9 /* TMDBMovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145D16D928A3CCD9007B2FB9 /* TMDBMovieData.swift */; };
 		1478255228A2303F00912F9F /* MainView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1478255128A2303F00912F9F /* MainView.storyboard */; };
@@ -44,6 +46,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1459B9E628A54643008DF067 /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
+		1459B9E828A54651008DF067 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		145D16D728A3B4BD007B2FB9 /* TMDBAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPIManager.swift; sourceTree = "<group>"; };
 		145D16D928A3CCD9007B2FB9 /* TMDBMovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBMovieData.swift; sourceTree = "<group>"; };
 		1478255128A2303F00912F9F /* MainView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainView.storyboard; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				14AD3BE8289E55EB008AD14C /* .gitignore */,
+				14C43AF228A5405200DFC208 /* Map */,
 				1478254E28A22F3900912F9F /* TableViewCollectionView */,
 				14AD3BD1289E50AE008AD14C /* TMDBProject2 */,
 				14AD3BD0289E50AE008AD14C /* Products */,
@@ -196,6 +201,15 @@
 			path = Web;
 			sourceTree = "<group>";
 		};
+		14C43AF228A5405200DFC208 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				1459B9E628A54643008DF067 /* Map.storyboard */,
+				1459B9E828A54651008DF067 /* MapViewController.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -265,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14AD3C0B289EAD06008AD14C /* OverViewTableViewCell.xib in Resources */,
+				1459B9E728A54643008DF067 /* Map.storyboard in Resources */,
 				1478255928A233A900912F9F /* BannerView.xib in Resources */,
 				14AD3C0F289EAD16008AD14C /* CastCrewTableViewCell.xib in Resources */,
 				1478255228A2303F00912F9F /* MainView.storyboard in Resources */,
@@ -294,6 +309,7 @@
 				14AD3C01289E7B77008AD14C /* Movie.swift in Sources */,
 				1478256028A2908700912F9F /* MainTableViewCell.swift in Sources */,
 				14AD3C14289ED6BC008AD14C /* WebViewController.swift in Sources */,
+				1459B9E928A54651008DF067 /* MapViewController.swift in Sources */,
 				14AD3BD3289E50AE008AD14C /* AppDelegate.swift in Sources */,
 				14AD3BF5289E5CF7008AD14C /* MainCollectionViewCell.swift in Sources */,
 				14AD3BED289E576B008AD14C /* Constant.swift in Sources */,
