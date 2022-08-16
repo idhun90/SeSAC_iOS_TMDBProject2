@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jrG-UI-vXH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f3s-Wo-st9">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -37,6 +37,88 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="83.705357142857139"/>
+        </scene>
+        <!--Walking Through View Controller-->
+        <scene sceneID="5qT-GT-flf">
+            <objects>
+                <pageViewController storyboardIdentifier="WalkingThroughViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="f3s-Wo-st9" customClass="WalkingThroughViewController" customModule="TMDBProject2" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Fe-vf-Jus" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2241" y="84"/>
+        </scene>
+        <!--First View Controller-->
+        <scene sceneID="es0-Mv-3Ni">
+            <objects>
+                <viewController storyboardIdentifier="FirstViewController" id="K39-Tk-SB8" customClass="FirstViewController" customModule="TMDBProject2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="u3X-c0-atc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="영화는" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HqU-zr-z7S">
+                                <rect key="frame" x="30" y="74" width="354" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jfh-yR-dCf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="HqU-zr-z7S" firstAttribute="top" secondItem="jfh-yR-dCf" secondAttribute="top" constant="30" id="PJy-iI-Xna"/>
+                            <constraint firstItem="HqU-zr-z7S" firstAttribute="leading" secondItem="jfh-yR-dCf" secondAttribute="leading" constant="30" id="SPH-hJ-OIL"/>
+                            <constraint firstItem="jfh-yR-dCf" firstAttribute="trailing" secondItem="HqU-zr-z7S" secondAttribute="trailing" constant="30" id="mvZ-fP-ApU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="introLabel" destination="HqU-zr-z7S" id="mVA-hE-ZaH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cH5-Fd-0tL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1475" y="84"/>
+        </scene>
+        <!--Second View Controller-->
+        <scene sceneID="5CO-H3-v5n">
+            <objects>
+                <viewController storyboardIdentifier="SecondViewController" id="xzs-Ie-Vsk" customClass="SecondViewController" customModule="TMDBProject2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sLs-qq-k2u">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TMDB에서" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAc-bH-zvr">
+                                <rect key="frame" x="30" y="74" width="354" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UrE-RD-1xr">
+                                <rect key="frame" x="173.5" y="432.5" width="67" height="31"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <connections>
+                                    <action selector="goToMainButtonClicked:" destination="xzs-Ie-Vsk" eventType="touchUpInside" id="U3d-Zi-nOq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rlt-Tn-p3e"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="IAc-bH-zvr" firstAttribute="leading" secondItem="rlt-Tn-p3e" secondAttribute="leading" constant="30" id="BEj-1k-DOa"/>
+                            <constraint firstItem="UrE-RD-1xr" firstAttribute="centerX" secondItem="sLs-qq-k2u" secondAttribute="centerX" id="P61-gq-GxS"/>
+                            <constraint firstItem="UrE-RD-1xr" firstAttribute="centerY" secondItem="sLs-qq-k2u" secondAttribute="centerY" id="dIE-PS-zBs"/>
+                            <constraint firstItem="IAc-bH-zvr" firstAttribute="top" secondItem="rlt-Tn-p3e" secondAttribute="top" constant="30" id="iS6-YB-tv5"/>
+                            <constraint firstItem="rlt-Tn-p3e" firstAttribute="trailing" secondItem="IAc-bH-zvr" secondAttribute="trailing" constant="30" id="mz8-j9-yru"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="goToMainButton" destination="UrE-RD-1xr" id="bSb-um-sp4"/>
+                        <outlet property="introLabel" destination="IAc-bH-zvr" id="ysa-6F-mEe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U54-1V-OeS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-699" y="84"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZL1-Dd-npE">

@@ -24,6 +24,9 @@
 		1478256528A29A9700912F9F /* ListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1478256328A29A9700912F9F /* ListCollectionViewCell.xib */; };
 		14842E0128AB9C9D00F54D4B /* TMDBFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14842DFD28AB9BC700F54D4B /* TMDBFramework.framework */; };
 		14842E0228AB9C9D00F54D4B /* TMDBFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14842DFD28AB9BC700F54D4B /* TMDBFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		14842E0628ABED4200F54D4B /* WalkingThroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14842E0528ABED4200F54D4B /* WalkingThroughViewController.swift */; };
+		14842E0828ABEDCD00F54D4B /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14842E0728ABEDCD00F54D4B /* FirstViewController.swift */; };
+		14842E0A28ABEDDC00F54D4B /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14842E0928ABEDDC00F54D4B /* SecondViewController.swift */; };
 		14AD3BD3289E50AE008AD14C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AD3BD2289E50AE008AD14C /* AppDelegate.swift */; };
 		14AD3BD5289E50AE008AD14C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AD3BD4289E50AE008AD14C /* SceneDelegate.swift */; };
 		14AD3BDA289E50AE008AD14C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14AD3BD8289E50AE008AD14C /* Main.storyboard */; };
@@ -98,6 +101,9 @@
 		1478256228A29A9700912F9F /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListCollectionViewCell.swift; path = Banner/ListCollectionViewCell.swift; sourceTree = "<group>"; };
 		1478256328A29A9700912F9F /* ListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ListCollectionViewCell.xib; path = Banner/ListCollectionViewCell.xib; sourceTree = "<group>"; };
 		14842DF728AB9BC700F54D4B /* TMDBFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TMDBFramework.xcodeproj; path = ../TMDBFramework/TMDBFramework.xcodeproj; sourceTree = "<group>"; };
+		14842E0528ABED4200F54D4B /* WalkingThroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkingThroughViewController.swift; sourceTree = "<group>"; };
+		14842E0728ABEDCD00F54D4B /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		14842E0928ABEDDC00F54D4B /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		14AD3BCF289E50AE008AD14C /* TMDBProject2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDBProject2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14AD3BD2289E50AE008AD14C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14AD3BD4289E50AE008AD14C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -143,6 +149,9 @@
 			children = (
 				1478255728A2319B00912F9F /* Banner */,
 				1478255128A2303F00912F9F /* MainView.storyboard */,
+				14842E0528ABED4200F54D4B /* WalkingThroughViewController.swift */,
+				14842E0728ABEDCD00F54D4B /* FirstViewController.swift */,
+				14842E0928ABEDDC00F54D4B /* SecondViewController.swift */,
 				1478255528A2318000912F9F /* MainListViewController.swift */,
 				1478256228A29A9700912F9F /* ListCollectionViewCell.swift */,
 				1478256328A29A9700912F9F /* ListCollectionViewCell.xib */,
@@ -389,6 +398,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14842E0A28ABEDDC00F54D4B /* SecondViewController.swift in Sources */,
 				1478255D28A236EA00912F9F /* BannerView.swift in Sources */,
 				14DEB65F28A10D17007B48D8 /* APIManager.swift in Sources */,
 				145D16DA28A3CCD9007B2FB9 /* TMDBMovieData.swift in Sources */,
@@ -403,6 +413,7 @@
 				14AD3C0A289EAD06008AD14C /* OverViewTableViewCell.swift in Sources */,
 				145D16D828A3B4BD007B2FB9 /* TMDBAPIManager.swift in Sources */,
 				1478256428A29A9700912F9F /* ListCollectionViewCell.swift in Sources */,
+				14842E0628ABED4200F54D4B /* WalkingThroughViewController.swift in Sources */,
 				14AD3BF2289E5A9D008AD14C /* MainViewController.swift in Sources */,
 				14AD3BEB289E575B008AD14C /* APIKey.swift in Sources */,
 				14AD3BD5289E50AE008AD14C /* SceneDelegate.swift in Sources */,
@@ -410,6 +421,7 @@
 				1459B9EF28A56B73008DF067 /* TheaterData.swift in Sources */,
 				1459B9ED28A56ADA008DF067 /* TheaterViewController.swift in Sources */,
 				14AD3C0E289EAD16008AD14C /* CastCrewTableViewCell.swift in Sources */,
+				14842E0828ABEDCD00F54D4B /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
