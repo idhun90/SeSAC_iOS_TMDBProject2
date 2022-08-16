@@ -6,10 +6,10 @@ class TheaterViewController: UIViewController {
     
     @IBOutlet weak var theaterMapView: MKMapView!
     
-    let locationManager = CLLocationManager()
+    private let locationManager = CLLocationManager()
     
-    let theaterList = TheaterList()
-    let centerList: [CLLocationCoordinate2D] = []
+    private let theaterList = TheaterList()
+    private let centerList: [CLLocationCoordinate2D] = []
     
     
     override func viewDidLoad() {
@@ -34,7 +34,7 @@ class TheaterViewController: UIViewController {
     }
     
     
-    func setRegionAndAnnotation(center: CLLocationCoordinate2D, title: String) {
+    private func setRegionAndAnnotation(center: CLLocationCoordinate2D, title: String) {
         
         // 보여줄 범위
         //        let region = MKCoordinateRegion(center: center, latitudinalMeters: 100, longitudinalMeters: 100)
@@ -48,7 +48,7 @@ class TheaterViewController: UIViewController {
         
     }
     
-    func setAllAnnotation() {
+    private func setAllAnnotation() {
         
         for count in 0...theaterList.mapAnnotations.count-1 {
             
@@ -74,7 +74,7 @@ class TheaterViewController: UIViewController {
         
     }
     
-    func sortData() {
+    private func sortData() {
         
         for count in 0...theaterList.mapAnnotations.count-1 {
             
@@ -124,7 +124,7 @@ class TheaterViewController: UIViewController {
     extension TheaterViewController {
         
         // iOS 버전에 따른 분기 처리 및 iOS 위치서비스 활성화 여부 체크
-        func checkDeviceLocationServiceAuthorzation() {
+        private func checkDeviceLocationServiceAuthorzation() {
             print(#function)
             
             let authorizationStatus: CLAuthorizationStatus
@@ -145,7 +145,7 @@ class TheaterViewController: UIViewController {
         }
         
         // 사용자가 선택한 앱의 위치 접근 허용 상태 체크
-        func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
+        private func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
             switch authorizationStatus {
             case .notDetermined:
                 print("대기 상태, notDetermined")

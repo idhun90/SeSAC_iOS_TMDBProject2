@@ -9,7 +9,7 @@ class ListCollectionViewCell: UICollectionViewCell {
         layout()
     }
 
-    func layout() {
+    private func layout() {
         bannerView.backgroundColor = .clear
         bannerView.bannerImageView.backgroundColor = .orange
         bannerView.bannerImageView.layer.cornerRadius = 5

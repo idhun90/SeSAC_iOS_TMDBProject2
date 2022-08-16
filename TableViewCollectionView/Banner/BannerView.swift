@@ -10,7 +10,7 @@ class BannerView: UIView {
         loadView()
     }
     
-    func loadView() {
+    private func loadView() {
         let view = UINib(nibName: String(describing: BannerView.self), bundle: nil).instantiate(withOwner: self).first as! UIView
         
         view.frame = bounds

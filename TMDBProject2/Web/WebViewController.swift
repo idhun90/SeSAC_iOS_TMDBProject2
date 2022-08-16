@@ -30,7 +30,7 @@ class WebViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func openWeb(url: String) {
+    private func openWeb(url: String) {
         let stringUrl = EndPoint.youtube + url
         guard let url = URL(string: stringUrl) else {
             print("유효하지 않은 주소")

@@ -23,10 +23,10 @@ class MapViewController: UIViewController {
     @IBOutlet weak var locationButton: UIButton!
     
     // 2.
-    let locationManager = CLLocationManager()
+    private let locationManager = CLLocationManager()
     
-    let defaultCenter = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
-    let appleStoreCenter = CLLocationCoordinate2D(latitude: 37.520870, longitude: 127.022772)
+    private let defaultCenter = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
+    private let appleStoreCenter = CLLocationCoordinate2D(latitude: 37.520870, longitude: 127.022772)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,7 @@ class MapViewController: UIViewController {
     }
     
     // 8
-    func setRegionAndAnnotation(center: CLLocationCoordinate2D, title: String) {
+    private func setRegionAndAnnotation(center: CLLocationCoordinate2D, title: String) {
         print(#function)
         
         // 보여질 지도 중심 및 범위 설정
@@ -51,7 +51,7 @@ class MapViewController: UIViewController {
         mapView.addAnnotation(annotation)
     }
     
-    func showRequestLocationServiceAlert() {
+    private func showRequestLocationServiceAlert() {
       let requestLocationServiceAlert = UIAlertController(title: "위치 접근 불가", message: "기기의 '설정 -> 개인정보 보호'에서 위치 서비스를 활성화해주세요.", preferredStyle: .alert)
       let goSetting = UIAlertAction(title: "설정으로 이동", style: .destructive) { _ in
 
@@ -72,7 +72,7 @@ class MapViewController: UIViewController {
 extension MapViewController {
     
     // iOS 버전에 따른 분기 처리 및 iOS 위치서비스 활성화 여부 체크
-    func checkDeviceLocationServiceAuthorzation() {
+    private func checkDeviceLocationServiceAuthorzation() {
         print(#function)
         
         let authorizationStatus: CLAuthorizationStatus
@@ -93,7 +93,7 @@ extension MapViewController {
     }
     
     // 사용자가 선택한 앱의 위치 접근 허용 상태 체크
-    func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
+    private func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
         switch authorizationStatus {
         case .notDetermined:
             print("대기 상태, notDetermined")

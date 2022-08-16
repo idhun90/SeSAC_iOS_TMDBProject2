@@ -7,10 +7,10 @@ import TMDBFramework
 
 class MainViewController: UIViewController {
     
-    var movieData: [Movie] = []
-    var page = 1
-    let totalPage = 1000
-    var genre: [Int: String] = [:]
+    private var movieData: [Movie] = []
+    private var page = 1
+    private let totalPage = 1000
+    private var genre: [Int: String] = [:]
     
     @IBOutlet weak var MainCollectionView: UICollectionView!
     
@@ -31,7 +31,7 @@ class MainViewController: UIViewController {
     }
     //MARK: - TBDM 네트워크 통신 요청
     
-    func fetchMovieByAPIManager(page: Int) {
+    private func fetchMovieByAPIManager(page: Int) {
         APIManager.shared.fetchMovie(page: page) { json in
             
             for movie in json["results"].arrayValue {
@@ -67,7 +67,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    func fetchGenreByAPIManager() {
+    private func fetchGenreByAPIManager() {
         APIManager.shared.fetchGenre { json in
             for dictionary in json["genres"].arrayValue {
                 let key = dictionary["id"].intValue
@@ -81,7 +81,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    func fetchVideoByAPIManager(id: Int) {
+    private func fetchVideoByAPIManager(id: Int) {
         APIManager.shared.fetchVideo(id: id) { json in
             let key = json["results"][0]["key"].stringValue
             self.transitionWithKeyValue(key: key)
@@ -89,7 +89,7 @@ class MainViewController: UIViewController {
     }
     
     //MARK: - Layout
-    func collectionViewLayout() {
+    private func collectionViewLayout() {
         let layout = UICollectionViewFlowLayout()
         let spacing: CGFloat = 5
         let itemCount: CGFloat = 1
@@ -104,7 +104,7 @@ class MainViewController: UIViewController {
     }
     
     //MARK: - Action 함수
-    func transitionWithKeyValue(key: String) {
+    private func transitionWithKeyValue(key: String) {
         let sb = UIStoryboard(name: StoryBoardName.web, bundle: nil)
         guard let vc = sb.instantiateViewController(withIdentifier: WebViewController.reuseIdentifier) as? WebViewController else { return }
         

@@ -33,9 +33,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailTableView: UITableView!
     
     var movieData: Movie?
-    var castInfo: [Cast] = []
-    var crewInfo: [Crew] = []
-    var isExpanded: Bool = false // flase: 2, true : 0
+    private var castInfo: [Cast] = []
+    private var crewInfo: [Crew] = []
+    private var isExpanded: Bool = false // flase: 2, true : 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +56,7 @@ class DetailViewController: UIViewController {
     }
     
     //MARK: - TMDB 네트워크 통신 요청
-    func fetchCastCrewByAPIManager(moiveID: Int) {
+    private func fetchCastCrewByAPIManager(moiveID: Int) {
         APIManager.shared.fetchCastCrew(movieId: moiveID) { json in
             for cast in json["cast"].arrayValue {
                 let name = cast["name"].stringValue
@@ -87,7 +87,7 @@ class DetailViewController: UIViewController {
     }
     
     //MARK: - layout 및 초기 데이터 가져오기
-    func viewLayout() {
+    private func viewLayout() {
         
         blurImageView.backgroundColor = .black.withAlphaComponent(0.4)
         
@@ -100,7 +100,7 @@ class DetailViewController: UIViewController {
         
     }
     
-    func loadData() {
+    private func loadData() {
         
         guard let movieData = movieData else { return }
         
