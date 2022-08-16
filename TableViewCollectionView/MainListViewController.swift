@@ -6,13 +6,13 @@ class MainListViewController: UIViewController {
     
     @IBOutlet weak var mainTableView: UITableView!
     
-    let sectionTitle = ["Popular", "Top Rated", "Upcoming", "NowPlaying" , "탑건:매버릭을 즐겨봤다면"]
+    private let sectionTitle = ["Popular", "Top Rated", "Upcoming", "NowPlaying" , "탑건:매버릭을 즐겨봤다면"]
     
-    var popularMovie: [PopularMovie] = []
-    var topRatedMovie: [TopRatedMovie] = []
-    var upcomingMovie: [UpcomingMovie] = []
-    var similarMovie: [SimilarMoive] = []
-    var nowplayingMovie: [NowPlaying] = []
+    private var popularMovie: [PopularMovie] = []
+    private var topRatedMovie: [TopRatedMovie] = []
+    private var upcomingMovie: [UpcomingMovie] = []
+    private var similarMovie: [SimilarMoive] = []
+    private var nowplayingMovie: [NowPlaying] = []
     
     
     override func viewDidLoad() {
