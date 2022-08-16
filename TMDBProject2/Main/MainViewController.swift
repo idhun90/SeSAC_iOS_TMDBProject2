@@ -3,6 +3,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import Kingfisher
+import TMDBFramework
 
 class MainViewController: UIViewController {
     
@@ -20,8 +21,8 @@ class MainViewController: UIViewController {
         MainCollectionView.dataSource = self
         MainCollectionView.prefetchDataSource = self
         
-        let nib = UINib(nibName: MainCollectionViewCell.ReusableIdentifier, bundle: nil)
-        MainCollectionView.register(nib, forCellWithReuseIdentifier: MainCollectionViewCell.ReusableIdentifier)
+        let nib = UINib(nibName: MainCollectionViewCell.reuseIdentifier, bundle: nil)
+        MainCollectionView.register(nib, forCellWithReuseIdentifier: MainCollectionViewCell.reuseIdentifier)
         collectionViewLayout()
         
         fetchMovieByAPIManager(page: page)
@@ -105,7 +106,7 @@ class MainViewController: UIViewController {
     //MARK: - Action 함수
     func transitionWithKeyValue(key: String) {
         let sb = UIStoryboard(name: StoryBoardName.web, bundle: nil)
-        guard let vc = sb.instantiateViewController(withIdentifier: WebViewController.ReusableIdentifier) as? WebViewController else { return }
+        guard let vc = sb.instantiateViewController(withIdentifier: WebViewController.reuseIdentifier) as? WebViewController else { return }
         
         vc.key = key
         
@@ -138,7 +139,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = MainCollectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.ReusableIdentifier, for: indexPath) as? MainCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = MainCollectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.reuseIdentifier, for: indexPath) as? MainCollectionViewCell else { return UICollectionViewCell() }
         
         cell.genre = self.genre
         cell.configCell(data: movieData[indexPath.row])
@@ -151,7 +152,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: StoryBoardName.detail, bundle: nil)
-        guard let vc = sb.instantiateViewController(withIdentifier: DetailViewController.ReusableIdentifier) as? DetailViewController else { return }
+        guard let vc = sb.instantiateViewController(withIdentifier: DetailViewController.reuseIdentifier) as? DetailViewController else { return }
         
         vc.movieData = movieData[indexPath.row]
         

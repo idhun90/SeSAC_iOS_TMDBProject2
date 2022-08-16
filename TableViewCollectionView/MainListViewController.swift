@@ -1,5 +1,7 @@
 import UIKit
 
+import TMDBFramework
+
 class MainListViewController: UIViewController {
     
     @IBOutlet weak var mainTableView: UITableView!
@@ -25,8 +27,8 @@ class MainListViewController: UIViewController {
         mainTableView.dataSource = self
         mainTableView.delegate = self
         
-        let nib = UINib(nibName: MainTableViewCell.ReusableIdentifier, bundle: nil)
-        mainTableView.register(nib, forCellReuseIdentifier: MainTableViewCell.ReusableIdentifier)
+        let nib = UINib(nibName: MainTableViewCell.reuseIdentifier, bundle: nil)
+        mainTableView.register(nib, forCellReuseIdentifier: MainTableViewCell.reuseIdentifier)
         
         view.backgroundColor = .clear
         mainTableView.backgroundColor = .clear
@@ -73,7 +75,7 @@ extension MainListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.ReusableIdentifier, for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.reuseIdentifier, for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
         
         cell.listCollectionView.delegate = self
         cell.listCollectionView.dataSource = self
@@ -82,8 +84,8 @@ extension MainListViewController: UITableViewDelegate, UITableViewDataSource {
         print("======= \(#function), section: \(indexPath.section), tag: \(cell.listCollectionView.tag) =======")
         
         
-        let cellNib = UINib(nibName: ListCollectionViewCell.ReusableIdentifier, bundle: nil)
-        cell.listCollectionView.register(cellNib, forCellWithReuseIdentifier: ListCollectionViewCell.ReusableIdentifier)
+        let cellNib = UINib(nibName: ListCollectionViewCell.reuseIdentifier, bundle: nil)
+        cell.listCollectionView.register(cellNib, forCellWithReuseIdentifier: ListCollectionViewCell.reuseIdentifier)
         cell.listCollectionView.reloadData() // 테이블 뷰에만 리로드를 해주면 셀 태그가 꼬이는 문제가 있었다. 인덱스 꼬임 해결
         
         
@@ -114,7 +116,7 @@ extension MainListViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCollectionViewCell.ReusableIdentifier, for: indexPath) as? ListCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCollectionViewCell.reuseIdentifier, for: indexPath) as? ListCollectionViewCell else { return UICollectionViewCell() }
                 print("======= \(#function), [section:item] = [\(indexPath.section), \(indexPath.item)] ========")
         
         if collectionView.tag == 0 {

@@ -3,6 +3,7 @@ import UIKit
 import Alamofire
 import Kingfisher
 import SwiftyJSON
+import TMDBFramework
 
 enum Section: Int, CaseIterable {
     case overView
@@ -42,10 +43,10 @@ class DetailViewController: UIViewController {
         detailTableView.dataSource = self
         detailTableView.delegate = self
         
-        let overViewNib = UINib(nibName: OverViewTableViewCell.ReusableIdentifier, bundle: nil)
-        let CastCrewViewNib = UINib(nibName: CastCrewTableViewCell.ReusableIdentifier, bundle: nil)
-        detailTableView.register(overViewNib, forCellReuseIdentifier: OverViewTableViewCell.ReusableIdentifier)
-        detailTableView.register(CastCrewViewNib, forCellReuseIdentifier: CastCrewTableViewCell.ReusableIdentifier)
+        let overViewNib = UINib(nibName: OverViewTableViewCell.reuseIdentifier, bundle: nil)
+        let CastCrewViewNib = UINib(nibName: CastCrewTableViewCell.reuseIdentifier, bundle: nil)
+        detailTableView.register(overViewNib, forCellReuseIdentifier: OverViewTableViewCell.reuseIdentifier)
+        detailTableView.register(CastCrewViewNib, forCellReuseIdentifier: CastCrewTableViewCell.reuseIdentifier)
         
         viewLayout()
         loadData()
@@ -179,7 +180,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == Section.overView.rawValue {
-            guard let cell = detailTableView.dequeueReusableCell(withIdentifier: OverViewTableViewCell.ReusableIdentifier, for: indexPath) as? OverViewTableViewCell else { return UITableViewCell() }
+            guard let cell = detailTableView.dequeueReusableCell(withIdentifier: OverViewTableViewCell.reuseIdentifier, for: indexPath) as? OverViewTableViewCell else { return UITableViewCell() }
             //print("===== 현재 섹션 0 체크용: \(indexPath.section) =====")
             
             if let movieData = movieData {
@@ -195,7 +196,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             
         } else {
             //print("===== 현재 섹션: \(indexPath.section) =====")
-            guard let cell = detailTableView.dequeueReusableCell(withIdentifier: CastCrewTableViewCell.ReusableIdentifier, for: indexPath) as? CastCrewTableViewCell else { return UITableViewCell() }
+            guard let cell = detailTableView.dequeueReusableCell(withIdentifier: CastCrewTableViewCell.reuseIdentifier, for: indexPath) as? CastCrewTableViewCell else { return UITableViewCell() }
             
             indexPath.section == Section.cast.rawValue ? cell.configCastCell(data: castInfo[indexPath.row]) : cell.configCrewCell(data: crewInfo[indexPath.row])
             

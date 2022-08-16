@@ -22,6 +22,8 @@
 		1478256128A2908700912F9F /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1478255F28A2908700912F9F /* MainTableViewCell.xib */; };
 		1478256428A29A9700912F9F /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1478256228A29A9700912F9F /* ListCollectionViewCell.swift */; };
 		1478256528A29A9700912F9F /* ListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1478256328A29A9700912F9F /* ListCollectionViewCell.xib */; };
+		14842E0128AB9C9D00F54D4B /* TMDBFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14842DFD28AB9BC700F54D4B /* TMDBFramework.framework */; };
+		14842E0228AB9C9D00F54D4B /* TMDBFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14842DFD28AB9BC700F54D4B /* TMDBFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14AD3BD3289E50AE008AD14C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AD3BD2289E50AE008AD14C /* AppDelegate.swift */; };
 		14AD3BD5289E50AE008AD14C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AD3BD4289E50AE008AD14C /* SceneDelegate.swift */; };
 		14AD3BDA289E50AE008AD14C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14AD3BD8289E50AE008AD14C /* Main.storyboard */; };
@@ -48,6 +50,37 @@
 		14DEB65F28A10D17007B48D8 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DEB65E28A10D17007B48D8 /* APIManager.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		14842DFC28AB9BC700F54D4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14842DF728AB9BC700F54D4B /* TMDBFramework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 14842DD928AB8B3200F54D4B;
+			remoteInfo = TMDBFramework;
+		};
+		14842DFE28AB9BC700F54D4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14842DF728AB9BC700F54D4B /* TMDBFramework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 14842DE328AB8B3200F54D4B;
+			remoteInfo = TMDBFrameworkTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		14842E0328AB9C9D00F54D4B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				14842E0228AB9C9D00F54D4B /* TMDBFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1459B9E628A54643008DF067 /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		1459B9E828A54651008DF067 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +97,7 @@
 		1478255F28A2908700912F9F /* MainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainTableViewCell.xib; path = Banner/MainTableViewCell.xib; sourceTree = "<group>"; };
 		1478256228A29A9700912F9F /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListCollectionViewCell.swift; path = Banner/ListCollectionViewCell.swift; sourceTree = "<group>"; };
 		1478256328A29A9700912F9F /* ListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ListCollectionViewCell.xib; path = Banner/ListCollectionViewCell.xib; sourceTree = "<group>"; };
+		14842DF728AB9BC700F54D4B /* TMDBFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TMDBFramework.xcodeproj; path = ../TMDBFramework/TMDBFramework.xcodeproj; sourceTree = "<group>"; };
 		14AD3BCF289E50AE008AD14C /* TMDBProject2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDBProject2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14AD3BD2289E50AE008AD14C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14AD3BD4289E50AE008AD14C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14842E0128AB9C9D00F54D4B /* TMDBFramework.framework in Frameworks */,
 				14AD3BFF289E6FD5008AD14C /* Alamofire in Frameworks */,
 				14AD3BFC289E6FC7008AD14C /* SwiftyJSON in Frameworks */,
 				14AD3BF9289E6FBB008AD14C /* Kingfisher in Frameworks */,
@@ -128,14 +163,32 @@
 			path = Banner;
 			sourceTree = "<group>";
 		};
+		14842DF828AB9BC700F54D4B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				14842DFD28AB9BC700F54D4B /* TMDBFramework.framework */,
+				14842DFF28AB9BC700F54D4B /* TMDBFrameworkTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		14842E0028AB9C9D00F54D4B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		14AD3BC6289E50AE008AD14C = {
 			isa = PBXGroup;
 			children = (
+				14842DF728AB9BC700F54D4B /* TMDBFramework.xcodeproj */,
 				14AD3BE8289E55EB008AD14C /* .gitignore */,
 				14C43AF228A5405200DFC208 /* Map */,
 				1478254E28A22F3900912F9F /* TableViewCollectionView */,
 				14AD3BD1289E50AE008AD14C /* TMDBProject2 */,
 				14AD3BD0289E50AE008AD14C /* Products */,
+				14842E0028AB9C9D00F54D4B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -229,6 +282,7 @@
 				14AD3BCB289E50AE008AD14C /* Sources */,
 				14AD3BCC289E50AE008AD14C /* Frameworks */,
 				14AD3BCD289E50AE008AD14C /* Resources */,
+				14842E0328AB9C9D00F54D4B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -275,12 +329,35 @@
 			);
 			productRefGroup = 14AD3BD0289E50AE008AD14C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 14842DF828AB9BC700F54D4B /* Products */;
+					ProjectRef = 14842DF728AB9BC700F54D4B /* TMDBFramework.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				14AD3BCE289E50AE008AD14C /* TMDBProject2 */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		14842DFD28AB9BC700F54D4B /* TMDBFramework.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TMDBFramework.framework;
+			remoteRef = 14842DFC28AB9BC700F54D4B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		14842DFF28AB9BC700F54D4B /* TMDBFrameworkTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = TMDBFrameworkTests.xctest;
+			remoteRef = 14842DFE28AB9BC700F54D4B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		14AD3BCD289E50AE008AD14C /* Resources */ = {
@@ -479,6 +556,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7CR6X9MD8C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TMDBProject2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -506,6 +584,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7CR6X9MD8C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TMDBProject2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -97,17 +97,21 @@ extension MapViewController {
         switch authorizationStatus {
         case .notDetermined:
             print("대기 상태, notDetermined")
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest // 최대한 정밀하게 위치를 표현하기 위해 주기적으로 바아옴
             locationManager.requestWhenInUseAuthorization()
+            
         case .restricted, .denied:
             print("영등포 캠퍼스로 맵뷰 중심 설정")
             setRegionAndAnnotation(center: defaultCenter, title: "영등포 캠퍼스")
             showRequestLocationServiceAlert()
+            
         case .authorizedAlways:
             print("항상 허용 권한, 먼저 WhenInUse 권한 요청 후 처리하기")
+            
         case .authorizedWhenInUse:
             print("앱을 사용하는 동안 허용")
             locationManager.startUpdatingLocation()
+            
         default:
             print("오류 발생")
         }
@@ -122,7 +126,7 @@ extension MapViewController: CLLocationManagerDelegate {
         print(#function)
         
         if let coordinate = locations.last?.coordinate {
-            setRegionAndAnnotation(center: coordinate, title: "집")
+            setRegionAndAnnotation(center: coordinate, title: "현재 위치")
         }
         
         locationManager.stopUpdatingLocation()

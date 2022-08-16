@@ -15,7 +15,7 @@ class ListCollectionViewCell: UICollectionViewCell {
         bannerView.bannerImageView.layer.cornerRadius = 5
         bannerView.bannerImageView.contentMode = .scaleAspectFill
         bannerView.bannerLabel.font = .systemFont(ofSize: 17)
-        bannerView.bannerImageView.layer.borderWidth = 2
+        bannerView.bannerImageView.layer.borderWidth = 1
         bannerView.bannerImageView.layer.borderColor = UIColor.systemGray.cgColor
         bannerView.bannerLabel.textColor = .black
         bannerView.bannerLabel.backgroundColor = .white

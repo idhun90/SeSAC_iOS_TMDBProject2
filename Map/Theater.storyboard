@@ -31,7 +31,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Leq-jm-GDu"/>
                     <connections>
-                        <outlet property="TheaterMapView" destination="Qae-8Q-WjL" id="poA-tn-ndu"/>
+                        <outlet property="theaterMapView" destination="Qae-8Q-WjL" id="poA-tn-ndu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
